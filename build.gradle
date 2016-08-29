@@ -1,21 +1,31 @@
-apply plugin: 'java'
-apply plugin: 'war'
-apply plugin: 'eclipse'
-apply plugin: 'eclipse-wtp'
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
 
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+jar {
+	baseName = 'gradle-sample'
+	version = '0.0.1'
+}
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	def springVersion = "4.3.1.RELEASE"
-	def commonsLang3Version = "3.4"
-	def mysqlVersion = "5.1.39"
-	
-	compile "org.apache.commons:commons-lang3:${commonsLang3Version}"
-	compile "org.springframework:spring-webmvc:${springVersion}"
-	compile "mysql:mysql-connector-java:${mysqlVersion}"
-	providedCompile "javax.servlet:javax.servlet-api:3.1.0"
+	compile('org.springframework.boot:spring-boot-starter-web')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
