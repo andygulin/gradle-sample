@@ -1,5 +1,3 @@
-# gradle-sample
-
 ### Run
 	gradle bootRun
 	OR
